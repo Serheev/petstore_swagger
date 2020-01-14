@@ -13,6 +13,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class Order {
     private int id;
+    /** Pet identifier on the https://petstore.swagger.io/ */
     private int petId;
     private int quantity;
     private String status;

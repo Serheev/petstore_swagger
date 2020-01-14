@@ -14,7 +14,9 @@ import lombok.AllArgsConstructor;
 public class Pet {
     private int id;
     private String name;
+    /** Category identifier on the https://petstore.swagger.io/ */
     private int category_id;
+    /** Category name on the https://petstore.swagger.io/ */
     private String category_name;
     private String status;
 }

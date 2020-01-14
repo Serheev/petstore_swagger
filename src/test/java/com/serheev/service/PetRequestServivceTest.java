@@ -10,14 +10,14 @@ import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
 
-public class PetRequestTest {
-    private static org.apache.log4j.Logger log = Logger.getLogger(PetRequestTest.class);
-    private static PetRequest request;
+public class PetRequestServivceTest {
+    private static Logger log = Logger.getLogger(PetRequestServivceTest.class);
+    private static PetRequestServivce request;
     private static Pet cat;
 
     @Before
-    public void SetUp() {
-        request = new PetRequest();
+    public void setUp() {
+        request = new PetRequestServivce();
         cat = new Pet(10001, "Tom", 0, "Cats", "Available");
     }
 
@@ -33,33 +33,29 @@ public class PetRequestTest {
     }
 
     @Test
-    public void petShouldBeReceived() throws IOException {
+    public void petShouldBeReceived() {
         try {
             assertEquals(404, request.doGet(10001));
             assertEquals(200, request.doPost(cat));
             assertEquals(200, request.doGet(10001));
         } catch (Exception e) {
             log.error(e.getMessage());
-        } finally {
-            request.close();
         }
     }
 
     @Test
-    public void petShouldBeAdd() throws IOException {
+    public void petShouldBeAdd() {
         try {
             assertEquals(404, request.doGet(10001));
             assertEquals(200, request.doPost(cat));
             assertEquals(200, request.doGet(10001));
         } catch (Exception e) {
             log.error(e.getMessage());
-        } finally {
-            request.close();
         }
     }
 
     @Test
-    public void petNameShouldBeUpdate() throws IOException {
+    public void petNameShouldBeUpdate() {
         try {
             assertEquals(200, request.doPost(cat));
             cat.setName("Jerry");
@@ -67,21 +63,17 @@ public class PetRequestTest {
             assertEquals(200, request.doPut(cat));
         } catch (Exception e) {
             log.error(e.getMessage());
-        } finally {
-            request.close();
         }
     }
 
     @Test
-    public void petShouldBeDelete() throws IOException {
+    public void petShouldBeDelete() {
         try {
             assertEquals(200, request.doPost(cat));
             assertEquals(200, request.doDelete(10001));
             assertEquals(404, request.doGet(10001));
         } catch (Exception e) {
             log.error(e.getMessage());
-        } finally {
-            request.close();
         }
     }
 
@@ -91,12 +83,6 @@ public class PetRequestTest {
             assertEquals(404, request.doGet(10001));
         } catch (Exception e) {
             log.error(e.getMessage());
-        } finally {
-            try {
-                request.close();
-            } catch (IOException e) {
-                log.error(e.getMessage());
-            }
         }
     }
 
